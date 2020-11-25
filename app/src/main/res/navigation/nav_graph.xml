@@ -2,6 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/placeholder">
-    <fragment android:id="@+id/placeholder" />
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.antanas.demo.countries.main.MainFragment"
+        android:label="MainFragment" />
 </navigation>

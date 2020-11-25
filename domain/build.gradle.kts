@@ -1,4 +1,4 @@
-import extensions.addCoreTestingDependencies
+
 
 plugins {
     id(Plugins.KOTLIN)
@@ -11,5 +11,11 @@ java {
 }
 
 dependencies {
-    addCoreTestingDependencies()
+    implementation(Libs.HILT_GOOGLE)
+    kapt(Libs.HILT_GOOGLE_COMPILER_CAPT)
+
+    implementation(Libs.COROUTINES_ANDROID)
+
+    testImplementation(TestingLibs.JUNIT)
+    testImplementation(TestingLibs.TRUTH_TEST)
 }
