@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="Widget.App.ProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="progressBarStyle">?android:attr/progressBarStyleInverse</item>
+    </style>
+
+</resources>
