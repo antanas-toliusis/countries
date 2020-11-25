@@ -2,7 +2,7 @@ package com.antanas.demo.startup
 
 import android.content.Context
 import androidx.startup.Initializer
-import com.antanas.demo.BuildConfig
+import com.antanas.demo.countries.BuildConfig
 import timber.log.Timber
 
 class TimberInitializer : Initializer<Unit> {

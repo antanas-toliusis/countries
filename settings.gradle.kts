@@ -1,4 +1,4 @@
-rootProject.name = "Demo App"
+rootProject.name = "Countries"
 include(":app")
 include(":core")
 include(":domain")
