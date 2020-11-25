@@ -1,11 +1,12 @@
 package library.core.glide
 
+import android.net.Uri
 import android.widget.ImageView
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 
-fun ImageView.load(url: String) {
-    GlideApp
-        .with(this)
-        .load(url)
-        .centerCrop()
-        .into(this)
+fun ImageView.loadSwg(url: String) {
+    GlideToVectorYou
+        .init()
+        .with(context)
+        .load(Uri.parse(url), this)
 }

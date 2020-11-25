@@ -5,26 +5,36 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.antanas.demo.domain.entities.CountryEntity
 import com.antanas.demo.domain.usecase.GetCountriesUseCase
 import kotlinx.coroutines.launch
-import library.core.extensions.logTimberWithTag
 import library.core.uistate.UIState
+import library.core.uistate.UIState.Loading
+import library.core.uistate.mapToUiState
 
 class MainViewModel @ViewModelInject constructor(
     private val getCountriesUseCase: GetCountriesUseCase
 ) : ViewModel() {
 
-    fun onRetryBtnClicked() {
-    }
-
-    private var _liveData = MutableLiveData<UIState<List<Any>>>()
-    val liveData: LiveData<UIState<List<Any>>> = _liveData
+    private var _liveData = MutableLiveData<UIState<List<CountryEntity>>>()
+    val liveData: LiveData<UIState<List<CountryEntity>>> = _liveData
 
     init {
+        loadCountries()
+    }
+
+    fun onRetryBtnClicked() {
+        loadCountries()
+    }
+
+    private fun loadCountries() {
+        _liveData.postValue(Loading())
+
         viewModelScope.launch {
-            getCountriesUseCase().let {
-                logTimberWithTag("received $it")
-            }
+            getCountriesUseCase()
+                .mapToUiState().let {
+                    _liveData.postValue(it)
+                }
         }
     }
 }

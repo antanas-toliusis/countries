@@ -46,6 +46,7 @@ object Libs {
     // GLIDE
     const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE}"
     const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:${Versions.GLIDE}"
+    const val GLIDE_TO_VECTOR_YOU = "com.github.corouteam:GlideToVectorYou:${Versions.GLIDE_TO_VECTOR_YOU}"
 
     // LOGGING
     const val TIMBER_KT = "com.github.ajalt:timberkt:${Versions.TIMBER_KT}"

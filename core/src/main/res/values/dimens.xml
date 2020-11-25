@@ -1,5 +1,4 @@
 <resources>
-
     <dimen name="group_items_spacing">3dp</dimen>
-    <dimen name="list_image_view_width">80dp</dimen>
+    <dimen name="list_image_view_width">70dp</dimen>
 </resources>

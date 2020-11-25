@@ -10,7 +10,6 @@ import com.antanas.demo.countries.databinding.FragmentMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import library.core.extensions.exhaustive
 import library.core.extensions.fragment.viewBinding
-import library.core.extensions.view.addDecoration
 import library.core.uistate.UIState
 import library.core.views.LoadingState.HideAllViews
 import library.core.views.LoadingState.Loading
@@ -23,7 +22,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private val viewModel by viewModels<MainViewModel>()
     private val binding by viewBinding(FragmentMainBinding::bind)
 
-    private val mainAdapter = MainAdapter { _, _ ->
+    private val mainAdapter = MainAdapter { country, _ ->
         navigateToDetails()
     }
 
@@ -36,9 +35,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun setUi() {
         with(binding) {
             recyclerView.run {
-                layoutManager = LinearLayoutManager(requireActivity())
                 adapter = mainAdapter
-                addDecoration(R.dimen.group_items_spacing)
+                layoutManager = LinearLayoutManager(context)
             }
 
             loadingView.setOnRetryClickListener {

@@ -1,5 +1,3 @@
-
-
 plugins {
     id(Plugins.KOTLIN)
     kotlin(Plugins.KAPT)

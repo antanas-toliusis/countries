@@ -32,6 +32,7 @@ object Versions {
 
     // GLIDE
     const val GLIDE = "4.11.0"
+    const val GLIDE_TO_VECTOR_YOU = "2.0.0"
 
     // LOGGING
     const val TIMBER_KT = "1.5.1"

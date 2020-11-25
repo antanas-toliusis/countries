@@ -51,6 +51,7 @@ dependencies {
     api(Libs.GSON)
 
     implementation(Libs.GLIDE)
+    api(Libs.GLIDE_TO_VECTOR_YOU)
     kapt(Libs.GLIDE_COMPILER)
 
     addCoreTestingDependencies()

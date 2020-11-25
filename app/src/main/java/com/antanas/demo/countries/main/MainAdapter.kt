@@ -6,14 +6,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.antanas.demo.countries.R
 import com.antanas.demo.countries.databinding.ItemMainAdapterBinding
+import com.antanas.demo.domain.entities.CountryEntity
+import library.core.glide.loadSwg
 
 class MainAdapter(
-    private val listener: (Any, View) -> Unit
+    private val listener: (CountryEntity, View) -> Unit
 ) : RecyclerView.Adapter<ViewHolder>() {
 
-    private var data = listOf<Any>()
+    private var data = emptyList<CountryEntity>()
 
-    fun setData(data: List<Any>) {
+    fun setData(data: List<CountryEntity>) {
         this.data = data
         notifyDataSetChanged()
     }
@@ -34,9 +36,10 @@ class MainAdapter(
 class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
     private val binding = ItemMainAdapterBinding.bind(view)
 
-    fun bind(character: Any, listener: (Any, View) -> Unit) =
+    fun bind(country: CountryEntity, listener: (CountryEntity, View) -> Unit) =
         with(binding) {
-            root.setOnClickListener { listener(character, view) }
-            name.text = "test"
+            root.setOnClickListener { listener(country, view) }
+            image.loadSwg(country.flagUrl)
+            name.text = country.name
         }
 }
