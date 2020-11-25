@@ -1,11 +1,5 @@
 <resources>
 
     <dimen name="group_items_spacing">3dp</dimen>
-    <dimen name="extra_small_space">4dp</dimen>
-    <dimen name="small_space">8dp</dimen>
-    <dimen name="medium_space">12dp</dimen>
-    <dimen name="large_space">16dp</dimen>
-
-    <dimen name="list_image_view_height">120dp</dimen>
     <dimen name="list_image_view_width">80dp</dimen>
 </resources>

@@ -25,9 +25,9 @@ android {
 }
 
 dependencies {
+    implementation(project(DOMAIN))
     api(project(NETWORK))
     api(project(DATABASE))
-    implementation(project(DOMAIN))
 
     api(Libs.CORE_KTX)
     api(Libs.APPCOMPAT)
