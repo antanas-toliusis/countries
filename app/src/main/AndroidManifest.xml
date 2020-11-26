@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.antanas.demo.App"
+        android:name=".App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:allowBackup="false"
@@ -31,7 +31,7 @@
             tools:node="merge">
 
             <meta-data
-                android:name="com.antanas.demo.startup.TimberInitializer"
+                android:name="com.antanas.demo.countries.startup.TimberInitializer"
                 android:value="androidx.startup" />
         </provider>
     </application>

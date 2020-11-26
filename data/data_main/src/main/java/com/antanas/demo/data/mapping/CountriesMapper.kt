@@ -25,6 +25,6 @@ private fun List<RemoteCurrency?>.mapToCurrencies(): List<Currency> =
     map {
         Currency(
             name = it?.name ?: "",
-            symbol = it?.symbol ?: ""
+            code = it?.code ?: ""
         )
     }

@@ -3,6 +3,7 @@ import extensions.addCoreTestingDependencies
 
 plugins {
     id(Plugins.ANDROID_APPLICATION)
+    id(Plugins.NAVIGATION_SAFEARGS)
     id(Plugins.HILT)
     kotlin(Plugins.ANDROID)
     kotlin(Plugins.KAPT)

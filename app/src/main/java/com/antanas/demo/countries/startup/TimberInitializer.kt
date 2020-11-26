@@ -1,4 +1,4 @@
-package com.antanas.demo.startup
+package com.antanas.demo.countries.startup
 
 import android.content.Context
 import androidx.startup.Initializer

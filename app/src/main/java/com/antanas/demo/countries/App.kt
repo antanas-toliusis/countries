@@ -1,4 +1,4 @@
-package com.antanas.demo
+package com.antanas.demo.countries
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.antanas.demo.countries.R
 import com.antanas.demo.countries.databinding.FragmentMainBinding
+import com.antanas.demo.domain.entities.CountryEntity
 import dagger.hilt.android.AndroidEntryPoint
 import library.core.extensions.exhaustive
 import library.core.extensions.fragment.viewBinding
@@ -23,7 +25,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private val binding by viewBinding(FragmentMainBinding::bind)
 
     private val mainAdapter = MainAdapter { country, _ ->
-        navigateToDetails()
+        navigateToDetails(country)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,8 +37,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun setUi() {
         with(binding) {
             recyclerView.run {
-                adapter = mainAdapter
                 layoutManager = LinearLayoutManager(context)
+                adapter = mainAdapter
             }
 
             loadingView.setOnRetryClickListener {
@@ -68,5 +70,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         )
     }
 
-    private fun navigateToDetails() {}
+    private fun navigateToDetails(countryEntity: CountryEntity) {
+        findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailsFragment(countryEntity))
+    }
 }

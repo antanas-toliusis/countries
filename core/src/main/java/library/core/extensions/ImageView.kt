@@ -1,4 +1,4 @@
-package library.core.glide
+package library.core.extensions
 
 import android.net.Uri
 import android.widget.ImageView

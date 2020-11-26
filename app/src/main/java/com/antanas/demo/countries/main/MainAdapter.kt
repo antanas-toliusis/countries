@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.antanas.demo.countries.R
 import com.antanas.demo.countries.databinding.ItemMainAdapterBinding
 import com.antanas.demo.domain.entities.CountryEntity
-import library.core.glide.loadSwg
+import library.core.extensions.loadSwg
 
 class MainAdapter(
     private val listener: (CountryEntity, View) -> Unit
