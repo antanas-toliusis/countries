@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         classpath(Plugins.KOTLIN_PLUGIN_CLASSPATH)
-        classpath(Plugins.ANDROID_PLUGIN_CLASSPATH)
+        classpath(Plugins.ANDROID_PLUGIN_GRADLE_CLASSPATH)
         classpath(Plugins.NAV_SAFE_ARGS_PLUGIN_CLASSPATH)
         classpath(Plugins.HILT_CLASSPATH)
         classpath(Plugins.KT_LINT_CLASSPATH)
