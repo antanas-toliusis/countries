@@ -38,6 +38,8 @@ dependencies {
     implementation(project(Modules.CORE))
     implementation(project(Modules.DOMAIN))
     implementation(project(Modules.DATA_MAIN))
+    implementation(project(Modules.DATABASE))
+    implementation(project(Modules.NETWORK))
 
     implementation(Libs.APP_STARTUP)
 

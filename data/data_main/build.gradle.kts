@@ -21,6 +21,8 @@ android {
 dependencies {
     implementation(project(Modules.CORE))
     implementation(project(Modules.DOMAIN))
+    implementation(project(Modules.NETWORK))
+    implementation(project(Modules.DATABASE))
 
     api(Libs.RETROFIT)
     implementation(Libs.RETROFIT_CONVERTER_GSON)

@@ -13,7 +13,7 @@ import library.core.extensions.view.snack
 import library.core.views.LoadingState.HideAllViews
 import library.core.views.LoadingState.Loading
 import library.core.views.LoadingState.OnConnectionError
-import library.core.views.LoadingState.OnEmptyError
+import library.core.views.LoadingState.UnknownError
 
 class LoadingView @JvmOverloads constructor(
     context: Context,
@@ -51,10 +51,9 @@ class LoadingView @JvmOverloads constructor(
                     progressBar.setGone()
                     errorMsgView.setGone()
                 }
-                OnEmptyError -> {
+                UnknownError -> {
                     errorMsgView.text = context.getString(R.string.err_msg_no_content)
                     errorMsgView.setVisible()
-
                     progressBar.setGone()
                     retryBtn.setGone()
                 }
@@ -67,5 +66,5 @@ sealed class LoadingState {
     object HideAllViews : LoadingState()
     object Loading : LoadingState()
     object OnConnectionError : LoadingState()
-    object OnEmptyError : LoadingState()
+    object UnknownError : LoadingState()
 }

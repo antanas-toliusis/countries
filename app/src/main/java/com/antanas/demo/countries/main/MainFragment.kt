@@ -12,11 +12,12 @@ import com.antanas.demo.domain.entities.CountryEntity
 import dagger.hilt.android.AndroidEntryPoint
 import library.core.extensions.exhaustive
 import library.core.extensions.fragment.viewBinding
+import library.core.listeners.SearchQueryListener
 import library.core.uistate.UIState
 import library.core.views.LoadingState.HideAllViews
 import library.core.views.LoadingState.Loading
 import library.core.views.LoadingState.OnConnectionError
-import library.core.views.LoadingState.OnEmptyError
+import library.core.views.LoadingState.UnknownError
 
 @AndroidEntryPoint
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -44,6 +45,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             loadingView.setOnRetryClickListener {
                 viewModel.onRetryBtnClicked()
             }
+
+            commonAppBarWithSearch.searchView.setOnQueryTextListener(
+                SearchQueryListener(lifecycle) {
+                    viewModel.onSearch(it)
+                }
+            )
         }
     }
 
@@ -62,8 +69,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                     is UIState.ConnectionError -> {
                         binding.loadingView.setState(OnConnectionError)
                     }
-                    is UIState.Empty -> {
-                        binding.loadingView.setState(OnEmptyError)
+                    is UIState.UnknownError -> {
+                        binding.loadingView.setState(UnknownError)
                     }
                 }.exhaustive
             }
@@ -71,6 +78,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun navigateToDetails(countryEntity: CountryEntity) {
-        findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailsFragment(countryEntity))
+        findNavController().navigate(
+            MainFragmentDirections.actionMainFragmentToDetailsFragment(
+                countryEntity
+            )
+        )
     }
 }

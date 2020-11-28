@@ -1,6 +1,5 @@
-import Modules.DATABASE
+
 import Modules.DOMAIN
-import Modules.NETWORK
 import extensions.addCoreTestingDependencies
 
 plugins {
@@ -26,8 +25,6 @@ android {
 
 dependencies {
     implementation(project(DOMAIN))
-    api(project(NETWORK))
-    api(project(DATABASE))
 
     api(Libs.CORE_KTX)
     api(Libs.APPCOMPAT)

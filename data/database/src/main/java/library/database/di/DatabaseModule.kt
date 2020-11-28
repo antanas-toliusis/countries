@@ -2,6 +2,7 @@ package library.database.di
 
 import android.content.Context
 import androidx.room.Room
+import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
@@ -10,16 +11,14 @@ import library.database.AppDao
 import library.database.AppDatabase
 import javax.inject.Singleton
 
-class DatabaseModule {
+@Module
+@InstallIn(ApplicationComponent::class)
+object DatabaseModule {
 
-    @InstallIn(ApplicationComponent::class)
-    object DatabaseModule {
-
-        @Provides
-        @Singleton
-        fun provideAppDatabase(@ApplicationContext appContext: Context): AppDao =
-            Room.databaseBuilder(appContext, AppDatabase::class.java, "app_database.db")
-                .build()
-                .appDao()
-    }
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext appContext: Context): AppDao =
+        Room.databaseBuilder(appContext, AppDatabase::class.java, "app_database.db")
+            .build()
+            .appDao()
 }

@@ -3,6 +3,5 @@
     <string name="search_query">Search country by name</string>
     <string name="available_currencies">Available Currencies</string>
     <string name="currencies_list_item_separator">-</string>
-
     <string name="details_page_capital">Capital : %1$s</string>
 </resources>

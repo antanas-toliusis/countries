@@ -17,6 +17,9 @@ android {
 }
 
 dependencies {
+    implementation(project(Modules.DOMAIN))
+    implementation(project(Modules.CORE))
+
     api(Libs.RETROFIT)
     implementation(Libs.RETROFIT_CONVERTER_GSON)
 

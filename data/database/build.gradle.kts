@@ -17,7 +17,11 @@ android {
 }
 
 dependencies {
-    implementation(Libs.ROOM_RUNTIME)
+    implementation(project(Modules.DOMAIN))
+    implementation(project(Modules.CORE))
+
+    api(Libs.ROOM_RUNTIME)
+    kapt(Libs.ROOM_COMPILER)
     implementation(Libs.ROOM_KTX)
 
     implementation(Libs.HILT_GOOGLE)

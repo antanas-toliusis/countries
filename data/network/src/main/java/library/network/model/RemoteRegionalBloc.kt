@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class RemoteRegionalBloc(
     @SerializedName("acronym")
-    val acronym: String,
+    val acronym: String?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("otherAcronyms")
-    val otherAcronyms: List<Any>,
+    val otherAcronyms: List<Any>?,
     @SerializedName("otherNames")
-    val otherNames: List<Any>
+    val otherNames: List<Any>?
 )

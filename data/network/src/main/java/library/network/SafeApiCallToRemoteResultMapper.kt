@@ -9,7 +9,7 @@ private typealias Failure<T> = RemoteResult.Failure<T>
 private typealias Connection = RemoteError.ConnectionError
 private typealias Unexpected = RemoteError.UnexpectedError
 
-suspend fun <T> safeApiCallToRemoteResultMapper(call: suspend () -> T): RemoteResult<T> {
+suspend fun <T> safeApiCallToRemoteResult(call: suspend () -> T): RemoteResult<T> {
     return runCatching {
         call()
     }.fold(

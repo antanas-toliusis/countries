@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">App Name</string>
-    <string name="err_msg_no_internet_connection">No Internet Connection. Try Again</string>
-    <string name="err_msg_no_content">No Content</string>
+    <string name="err_msg_no_internet_connection">No Internet Connection</string>
+    <string name="err_msg_no_content">No Content Available</string>
     <string name="retry">Retry</string>
 </resources>

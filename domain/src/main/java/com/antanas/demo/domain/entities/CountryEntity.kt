@@ -12,4 +12,4 @@ data class CountryEntity(
 data class Currency(
     val name: String,
     val code: String
-)
+) : Serializable
