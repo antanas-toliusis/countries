@@ -6,7 +6,7 @@ import com.antanas.demo.domain.entities.Currency
 import library.database.model.LocalCountry
 import library.database.model.LocalCurrency
 
-fun List<LocalCountry>.mapToDomainResultCountries(): DomainResult<List<CountryEntity>> =
+fun List<LocalCountry>.mapLocalToDomainCountries(): DomainResult<List<CountryEntity>> =
     map {
         CountryEntity(
             name = it.name,

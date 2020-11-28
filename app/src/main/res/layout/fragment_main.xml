@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include
-        android:id="@+id/common_app_bar_with_search"
+        android:id="@+id/app_bar"
         layout="@layout/search_app_bar" />
 
     <androidx.recyclerview.widget.RecyclerView

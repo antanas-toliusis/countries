@@ -40,6 +40,10 @@ class MainViewModel @ViewModelInject constructor(
     }
 
     fun onSearch(text: String) {
-        TODO()
+        viewModelScope.launch {
+            searchCountriesUseCase(text).mapToUiState().let {
+                _liveData.postValue(it)
+            }
+        }
     }
 }

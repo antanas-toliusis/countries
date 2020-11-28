@@ -1,6 +1,6 @@
 package com.antanas.demo.data.repository
 
-import com.antanas.demo.data.mapping.mapToDomainResultCountries
+import com.antanas.demo.data.mapping.mapLocalToDomainCountries
 import com.antanas.demo.data.mapping.mapToLocalCountries
 import com.antanas.demo.domain.DomainResult
 import com.antanas.demo.domain.entities.CountryEntity
@@ -19,7 +19,7 @@ class CountriesRepositoryImpl @Inject constructor(
     override suspend fun getCountries(): DomainResult<List<CountryEntity>> =
         localDataSource.getCountries().run {
             if (isNotEmpty()) {
-                mapToDomainResultCountries()
+                mapLocalToDomainCountries()
             } else {
                 fetchRemoteCountries()
             }
@@ -27,16 +27,18 @@ class CountriesRepositoryImpl @Inject constructor(
 
     private suspend fun fetchRemoteCountries(): DomainResult<List<CountryEntity>> =
         remoteDataSource.getCountries().let { result ->
-            result.mapToDomainResultCountries().also { domainResult ->
+            result.mapLocalToDomainCountries().also { domainResult ->
                 if (domainResult is DomainResult.Success<List<CountryEntity>>) {
                     saveRemoteResultToDB(result)
                 }
             }
         }
 
-    private suspend fun saveRemoteResultToDB(result: RemoteResult<List<RemoteCountry>>) {
+    private suspend fun saveRemoteResultToDB(result: RemoteResult<List<RemoteCountry>>) =
         result.mapToLocalCountries().let {
             localDataSource.insertCounties(it)
         }
-    }
+
+    override suspend fun searchCountries(query: String): DomainResult<List<CountryEntity>> =
+        localDataSource.searchCountries(query).mapLocalToDomainCountries()
 }

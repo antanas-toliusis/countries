@@ -9,7 +9,7 @@ import library.network.model.RemoteCountry
 import library.network.model.RemoteCurrency
 import library.network.result.RemoteResult
 
-fun RemoteResult<List<RemoteCountry>>.mapToDomainResultCountries(): DomainResult<List<CountryEntity>> =
+fun RemoteResult<List<RemoteCountry>>.mapLocalToDomainCountries(): DomainResult<List<CountryEntity>> =
     mapToDomainResult {
         DomainResult.Success(
             it.map { remoteCountry ->

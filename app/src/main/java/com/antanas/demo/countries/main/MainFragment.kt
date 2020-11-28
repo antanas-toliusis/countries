@@ -12,7 +12,7 @@ import com.antanas.demo.domain.entities.CountryEntity
 import dagger.hilt.android.AndroidEntryPoint
 import library.core.extensions.exhaustive
 import library.core.extensions.fragment.viewBinding
-import library.core.listeners.SearchQueryListener
+import library.core.listeners.OnQueryListener
 import library.core.uistate.UIState
 import library.core.views.LoadingState.HideAllViews
 import library.core.views.LoadingState.Loading
@@ -26,33 +26,32 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private val binding by viewBinding(FragmentMainBinding::bind)
 
     private val mainAdapter = MainAdapter { country, _ ->
-        navigateToDetails(country)
+        onCountryItemClick(country)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUi()
+        setRecyclerView()
+        setLoadingView()
+        setSearchView()
         observeLiveData()
     }
 
-    private fun setUi() {
-        with(binding) {
-            recyclerView.run {
-                layoutManager = LinearLayoutManager(context)
-                adapter = mainAdapter
-            }
-
-            loadingView.setOnRetryClickListener {
-                viewModel.onRetryBtnClicked()
-            }
-
-            commonAppBarWithSearch.searchView.setOnQueryTextListener(
-                SearchQueryListener(lifecycle) {
-                    viewModel.onSearch(it)
-                }
-            )
+    private fun setRecyclerView() = binding.recyclerView
+        .run {
+            layoutManager = LinearLayoutManager(context)
+            adapter = mainAdapter
         }
-    }
+
+    private fun setLoadingView() = binding.loadingView
+        .setOnRetryClickListener {
+            viewModel.onRetryBtnClicked()
+        }
+
+    private fun setSearchView() = binding.appBar.searchView
+        .setOnQueryTextListener(
+            OnQueryListener { viewModel.onSearch(it) }
+        )
 
     private fun observeLiveData() {
         viewModel.liveData.observe(
@@ -76,6 +75,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
         )
     }
+
+    private fun onCountryItemClick(country: CountryEntity) = binding.appBar.searchView
+        .run {
+            clearFocus()
+            navigateToDetails(country)
+        }
 
     private fun navigateToDetails(countryEntity: CountryEntity) {
         findNavController().navigate(
