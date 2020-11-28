@@ -9,5 +9,5 @@ import library.database.model.LocalCountry
 @TypeConverters(LocalCurrencyConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun appDao(): AppDao
+    abstract fun countriesDao(): CountriesDao
 }

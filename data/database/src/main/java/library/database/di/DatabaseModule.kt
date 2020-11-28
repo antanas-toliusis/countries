@@ -7,8 +7,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
-import library.database.AppDao
 import library.database.AppDatabase
+import library.database.CountriesDao
 import javax.inject.Singleton
 
 @Module
@@ -17,8 +17,8 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideAppDatabase(@ApplicationContext appContext: Context): AppDao =
+    fun provideAppDatabase(@ApplicationContext appContext: Context): CountriesDao =
         Room.databaseBuilder(appContext, AppDatabase::class.java, "app_database.db")
             .build()
-            .appDao()
+            .countriesDao()
 }
