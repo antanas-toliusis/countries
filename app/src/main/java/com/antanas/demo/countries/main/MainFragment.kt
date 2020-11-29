@@ -35,6 +35,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         setLoadingView()
         setSearchView()
         observeLiveData()
+        viewModel.loadAllCountries()
     }
 
     private fun setRecyclerView() = binding.recyclerView

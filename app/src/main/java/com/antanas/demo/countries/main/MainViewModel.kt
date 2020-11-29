@@ -21,15 +21,11 @@ class MainViewModel @ViewModelInject constructor(
     private var _liveData = MutableLiveData<UIState<List<CountryEntity>>>()
     val liveData: LiveData<UIState<List<CountryEntity>>> = _liveData
 
-    init {
-        loadAllCountries()
-    }
-
     fun onRetryBtnClicked() {
         loadAllCountries()
     }
 
-    private fun loadAllCountries() {
+    fun loadAllCountries() {
         _liveData.postValue(Loading())
 
         viewModelScope.launch {
