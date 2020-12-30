@@ -2,8 +2,10 @@ package com.antanas.demo.countries.main
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.antanas.demo.countries.R
@@ -25,8 +27,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private val viewModel by viewModels<MainViewModel>()
     private val binding by viewBinding(FragmentMainBinding::bind)
 
-    private val mainAdapter = MainAdapter { country, _ ->
-        onCountryItemClick(country)
+    private val mainAdapter = MainAdapter { country, view ->
+        onCountryItemClick(country = country, sharedView = view.findViewById(R.id.image))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,17 +79,17 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         )
     }
 
-    private fun onCountryItemClick(country: CountryEntity) = binding.appBar.searchView
+    private fun onCountryItemClick(country: CountryEntity, sharedView: ImageView) = binding.appBar.searchView
         .run {
             clearFocus()
-            navigateToDetails(country)
+            navigateToDetails(country, sharedView)
         }
 
-    private fun navigateToDetails(countryEntity: CountryEntity) {
-        findNavController().navigate(
-            MainFragmentDirections.actionMainFragmentToDetailsFragment(
-                countryEntity
+    private fun navigateToDetails(countryEntity: CountryEntity, sharedView: ImageView) {
+        findNavController()
+            .navigate(
+                MainFragmentDirections.actionMainFragmentToDetailsFragment(countryEntity),
+                FragmentNavigatorExtras(sharedView to "sharedView")
             )
-        )
     }
 }

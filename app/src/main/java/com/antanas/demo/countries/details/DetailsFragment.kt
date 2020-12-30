@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.TransitionInflater
 import com.antanas.demo.countries.R
 import com.antanas.demo.countries.databinding.FragmentDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,6 +19,14 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     private val binding by viewBinding(FragmentDetailsBinding::bind)
     private val country by lazy {
         navArgs<DetailsFragmentArgs>().value.countryEntity
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requireActivity().supportPostponeEnterTransition()
+
+        sharedElementEnterTransition = TransitionInflater.from(context)
+            .inflateTransition(android.R.transition.move)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,10 +50,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
         with(activity as AppCompatActivity) {
             setSupportActionBar(binding.toolbar)
-            supportActionBar?.run {
-                setDisplayShowHomeEnabled(true)
-                setDisplayHomeAsUpEnabled(true)
-            }
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
     }
 }
