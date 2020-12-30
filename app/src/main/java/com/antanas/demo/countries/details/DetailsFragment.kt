@@ -2,6 +2,7 @@ package com.antanas.demo.countries.details
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,11 +22,9 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUi()
-    }
-
-    private fun setUi() {
         with(binding) {
+            setUpAppBar()
+
             image.loadSwg(country.flagUrl)
             name.text = country.name
             capital.text = getString(R.string.details_page_capital, country.capital)
@@ -33,6 +32,18 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
             recyclerView.run {
                 layoutManager = LinearLayoutManager(context)
                 adapter = CurrenciesAdapter(currencies = country.currencies)
+            }
+        }
+    }
+
+    private fun setUpAppBar() {
+        binding.toolbar.title = country.name
+
+        with(activity as AppCompatActivity) {
+            setSupportActionBar(binding.toolbar)
+            supportActionBar?.run {
+                setDisplayShowHomeEnabled(true)
+                setDisplayHomeAsUpEnabled(true)
             }
         }
     }
