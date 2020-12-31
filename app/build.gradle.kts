@@ -53,6 +53,5 @@ dependencies {
     implementation(Libs.HILT_ANDROIDX_LIFECYCLE_VIEW_MODEL)
     kapt(Libs.HILT_ANDROIDX_COMPILER)
 
-    testImplementation(LIVE_DATA_TESTING_JRASKA)
     addCoreTestingDependencies()
 }
