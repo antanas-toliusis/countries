@@ -1,4 +1,3 @@
-import TestingLibs.LIVE_DATA_TESTING_JRASKA
 import extensions.addCoreTestingDependencies
 
 plugins {
